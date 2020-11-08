@@ -1,3 +1,4 @@
+//Nenaudota
 public enum MovingDirection {
     leftUp,
     leftDown,

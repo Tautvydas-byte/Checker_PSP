@@ -1,5 +1,5 @@
 
-
+//Nepadaryta ir nenaudota
 public class GameRules {
     private GameLevel level;
 

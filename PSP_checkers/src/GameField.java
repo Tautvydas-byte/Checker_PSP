@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class GameField {
 
   private int model[][] =
@@ -22,11 +20,11 @@ public class GameField {
     return model[0].length;
   }
 
-  public boolean isBlack(int y, int x) {
+  public boolean isSquareBlack(int y, int x) {
     return model[y][x] == 8;
   }
 
-  public boolean isWhite(int y, int x) {
+  public boolean isSquareWhite(int y, int x) {
     return model[y][x] == 0;
   }
 
@@ -39,19 +37,41 @@ public class GameField {
     }
 
 
-    /*public boolean isRightSide(Position position){
-      return isPositionCorrect(position) && position.getX() == getWidth()-1;
+    public boolean isRightLimitSide(Position position){//apie butent ribinius krastus
+      return isPositionCorrect(position) && position.getX() == getWidth()-1 && !(isLowerRightCorner(position) || isUpperRightCorner(position));
+    }//corner tikrina atskirai
+
+    public boolean isLeftLimitSide(Position position){
+      return isPositionCorrect(position) && position.getX() == 0  && !(isLowerLeftCorner(position) || isUpperLeftCorner(position));
     }
 
-    public boolean isLeftSide(Position position){
-      return isPositionCorrect(position) && position.getX() == 0;
+    public boolean isUpperLimitSide(Position position){
+        return isPositionCorrect(position) && position.getY() == 0 && !(isUpperLeftCorner(position) || isUpperRightCorner(position));
     }
 
-    public boolean isUp(Position position){
-        return isPositionCorrect(position) && position.getY() == 0;
+    public boolean isLowerLimitSide(Position position){
+        return isPositionCorrect(position) && position.getY() == getHeight()-1 && !(isLowerRightCorner(position) || isLowerLeftCorner(position));
     }
+    public boolean isLowerLeftCorner(Position position)
+    {
+      return isPositionCorrect(position) && position.getX() == 0 && position.getY() == getHeight()-1;
+    }
+    public boolean isLowerRightCorner(Position position)
+    {
+      return isPositionCorrect(position) && position.getX() == getWidth()-1 && position.getY() == getHeight()-1;
+    }
+    public boolean isUpperRightCorner(Position position)
+    {
+      return isPositionCorrect(position) && position.getX() == getWidth()-1 && position.getY() == 0;
+    }
+    public boolean isUpperLeftCorner(Position position)
+    {
+      return isPositionCorrect(position) && position.getX() == 0 && position.getY() == 0;
+    }
+    public boolean isNotInEitherSide(Position position)
+    {
+      return isPositionCorrect(position) &&
+              !(isUpperLimitSide(position) || isLowerLimitSide(position) || isRightLimitSide(position) || isLeftLimitSide(position));
+    }//jei bus corner tai priklausys X ir Y pusems, bet siaip niekur nenaudojama, bet galbut veliau reikes
 
-    public boolean isDown(Position position){
-        return isPositionCorrect(position) && position.getY() == getHeight()-1;
-    }*/
 }

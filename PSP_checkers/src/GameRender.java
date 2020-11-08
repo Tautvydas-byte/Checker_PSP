@@ -12,39 +12,27 @@ public class GameRender {
     for (int y = 0; y < gameLevel.getGameField().getWidth(); y++) {
       for (int x = 0; x < gameLevel.getGameField().getHeight(); x++) {
 
-        if (y == 0 && x == 0) System.out.print("0| ");
-        if (y == 1 && x == 0) System.out.print("1| ");
-        if (y == 2 && x == 0) System.out.print("2| ");
-        if (y == 3 && x == 0) System.out.print("3| ");
-        if (y == 4 && x == 0) System.out.print("4| ");
-        if (y == 5 && x == 0) System.out.print("5| ");
-        if (y == 6 && x == 0) System.out.print("6| ");
-        if (y == 7 && x == 0) System.out.print("7| ");
+        if (x == 0) System.out.print(y + "| ");
 
-        boolean checkerMade = false;
+        boolean spotHasChecker = false;
 
         for (Checker checker : gameLevel.getCheckers()) {
-          if (checker.at(x, y)) {
-            if (y <= 2) System.out.print(" % ");
-            else System.out.print(" ■ ");
-            checkerMade = true;
-            continue;
+          if (checker.at(y, x)) {
+            System.out.print(" P ");
+            spotHasChecker = true;
           }
         }
 
-        /*for (Checker checker : gameLevel.getcheckerOpponent()) {
-          if (checker.at(x, y)) {
-            if (y <= 2) System.out.print(" ○ ");
-            else System.out.print(" □ ");
-            checkerMade = true;
-            continue;
+        for (Checker checker : gameLevel.getOpponentCheckers()) {
+          if (checker.at(y, x)) {
+            System.out.print(" O ");
+            spotHasChecker = true;
           }
-        }*/
+        }
 
-        if (gameLevel.getGameField().isBlack(y, x) && !checkerMade) {
-          System.out.print(" ○ ");
-        } else if (gameLevel.getGameField().isWhite(y, x) && !checkerMade) {
-          System.out.print(" ○ ");
+        if (!spotHasChecker) {
+          if (gameLevel.getGameField().isSquareBlack(y, x)) System.out.print(" + ");
+          else if (gameLevel.getGameField().isSquareWhite(y, x)) System.out.print(" - ");
         }
       }
       System.out.println();

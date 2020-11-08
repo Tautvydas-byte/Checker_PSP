@@ -19,7 +19,7 @@ public class Checker {
     //gaunu pozicija ir tikrinu ar yra chekeris toj pozicijoj ar ne
   }
 
-  public boolean at(int x, int y) {
+  public boolean at(int y, int x) {
     return this.position.getY() == y && this.position.getX() == x;
     //gaunu pozicija ir tikrinu ar yra checeris toj pozicijoj ar ne
   }

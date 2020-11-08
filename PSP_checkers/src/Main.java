@@ -13,24 +13,19 @@ public class Main {
     ArrayList<Checker> checkerOpponent = new ArrayList<Checker>();
 
     GameLevel gameLevel = new GameLevel(field, checkers, checkerOpponent);
+    gameLevel.placeCheckers();
 
-    for (int y = 0; y < gameLevel.getGameField().getWidth(); y++) {
-      for (int x = 0; x < gameLevel.getGameField().getHeight(); x++) {
-        if (y >= 0 && y <= 2 && (y + x) % 2 == 0) {
-          checkers.add(new Checker(new Position(y, x)));
-        }
-        if (y >= 5 && y <= 8 && (y + x) % 2 == 0) {
-          checkers.add(new Checker(new Position(y, x)));
-        }
-      }
-    }
 
     ConsoleInput consoleInput = new ConsoleInput();
 
     while(true){
+        System.out.println("Player turn.");
         gameRender.renderMap(gameLevel);
-        System.out.println("Enter checker coordinates");
-        gameLevel.moveAChecker(consoleInput.getPositionInput(),consoleInput);
+        gameLevel.movePlayerChecker(consoleInput.getPositionInput(),consoleInput);
+
+        System.out.println("Opponent turn.");
+        gameRender.renderMap(gameLevel);
+        gameLevel.moveOpponentChecker(consoleInput.getPositionInput(),consoleInput);
     }
   }
 }

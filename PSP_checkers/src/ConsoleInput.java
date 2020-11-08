@@ -1,7 +1,4 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ConsoleInput {
@@ -10,12 +7,32 @@ public class ConsoleInput {
     int yCheckerPlace ;
     int xCheckerPlace;
       Scanner input = new Scanner(System.in);
-    System.out.print("Input checker coordination ex.: 51");
-    String coordinates = input.next();
+    System.out.print("Input checker coordination ex.:X=1; Y=5");
+
+    String coordinates;
+    while (true)
+    {
+      coordinates = input.next();
+      if (coordinatesAreValidNumber(coordinates)) break;
+      else System.out.println("Please enter coordinates in proper form. X and Y");
+    }
+
 
     yCheckerPlace = Integer.parseInt(coordinates.substring(1));
-    xCheckerPlace = Integer.parseInt(coordinates.substring(0,1));
-
+    xCheckerPlace = Integer.parseInt(coordinates.substring(0, 1));
     return new Position(yCheckerPlace, xCheckerPlace);
+  }
+
+  private boolean coordinatesAreValidNumber(String coordinates) {
+
+      if (coordinates.length() != 2) return false;
+
+      try {
+        Integer.parseInt(coordinates);
+      } catch (Exception e){
+        return false;
+      }
+
+      return true;
   }
 }

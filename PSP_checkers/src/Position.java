@@ -33,23 +33,23 @@ public class Position {
     return this.x == pos.getX() && this.y == pos.getY();
   }
 
-  /*public Position leftUp() {
+  public Position leftUp() {
     return new Position(y - 1, x - 1);
   }
 
   public Position rightUp() {
-    return new Position(y + 1, x - 1);
-  }
-
-  public Position leftDown() {
     return new Position(y - 1, x + 1);
   }
 
-  public Position rigDown() {
+  public Position leftDown() {
+    return new Position(y + 1, x - 1);
+  }
+
+  public Position rightDown() {
     return new Position(y + 1, x + 1);
   }
 
-  public Position addX(int dx) {
+  /*public Position addX(int dx) {
     this.x += dx;
     return this;
   }
